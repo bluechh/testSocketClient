@@ -58,6 +58,16 @@ namespace testSocketClient
                 await client.Socket.SendAsync(sendData, SocketFlags.None);
             });
 
+            client.Closed += (sender, e) =>
+            {
+                Console.WriteLine($"Error occurred");
+            };
+
+            client.Error += (sender, e) =>
+            {
+                Console.WriteLine("Connection closed");
+            };
+
             string address = "127.0.0.1";
             IPAddress serverIP = IPAddress.Parse(address);
 
